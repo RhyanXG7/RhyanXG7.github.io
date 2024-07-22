@@ -1,1 +1,21 @@
+# netlify.toml
+
+# Configurações gerais
+[build]
+  command = "npm run build"  # Comando para construir seu site
+  publish = "dist"           # Diretório de saída da construção
+
+# Redirecionamentos
+[[redirects]]
+  from = "/old-page"         # URL antiga
+  to = "/new-page"           # URL nova
+  status = 301               # Código de status HTTP (301 para redirecionamento permanente)
+
+# Variáveis de ambiente
+[build.environment]
+  API_KEY = "sua-chave-secreta"
+
+# Plugins de construção (se necessário)
+# [plugins]
+#   - package = "netlify-plugin-seu-plugin"
 
