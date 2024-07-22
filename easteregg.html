@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><l>Jogo de Adivinhação</l></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #9dabff;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 19px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .history {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+        .blinking {
+            animation: blink 1s steps(5, start) infinite;
+        }
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+        .changing-color {
+            animation: colorChange 3s infinite;
+        }
+        @keyframes colorChange {
+            0% { color: red; }
+            15% { color: orange; }
+            25% { color: blue; }
+            35% { color: black; }
+            45% { color: 9dabff; }
+            50% { color: purple; }
+            75% { color: cyan; }
+            100% { color: red; }
+        }
+        .life-bar {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .player-name {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 class="changing-color"><b>Adivinhe o Número</b></h1>
+        <p><b>📝 Tente Adivinhar o Número de 1 e 200</b></p>
+        <div id="errores"><b>❌ Erros: Nenhum erro</b></div>
+        <input type="number" id="chute" min="1" max="100" placeholder="Respota...">
+
+
+        <button onclick="verificarAdivinhacao()">Verificar</button>
+        <button onclick="darDica()" id="botaoDica"><o1 class="changing-color"><b>Dica</b></o1></button>
+        <button onclick="reiniciarJogo()">Reiniciar</button>
+        <div class="message" id="message"></div>
+        <div class="history" id="history"></div>
+        <div class="life-bar" id="life-bar">♥️ [ |||||||||||||||||||||||||||||||||||||| ] 200%</div>
+
+
+        <p><b>⚙️ Desenvolvido por <o1 class="changing-color">Rhyan57</o1></b></p>
+
+    </div>
+
+    <script>
+
+        // Gere um número aleatório entre 1 e 200
+        let numeroSecreto = Math.floor(Math.random() * 200) + 1;
+
+        // Inicialize o número de tentativas e erros
+        let tentativas = 0;
+        let erros = 0;
+        let maxTentativas = 20;
+        let historico = [];
+        let nomeUsuario = '';
+        let dicaUsada = false;
+
+        // Função para definir o nome do usuário
+        function definirNomeUsuario() {
+            nomeUsuario = prompt('Insira um Nome');
+            if (nomeUsuario) {
+                adicionarMensagemSistema(`<p class="changing-color"><b>${nomeUsuario}</b> Seja Bem Vindo(a)!</p>`);
+                setTimeout(() => {
+                    alert('O jogo começará em 1 minuto.');
+                }, 60000);
+            } else {
+                alert('⚠️ Por favor, insira um nome de usuário.');
+                definirNomeUsuario();
+            }
+        }
+
+        // Chama a função para definir o nome do usuário ao carregar a página
+        window.onload = definirNomeUsuario;
+
+        // Função para verificar a adivinhação do jogador
+        function verificarAdivinhacao() {
+            const chute = parseInt(document.getElementById('chute').value);
+            const message = document.getElementById('message');
+            const history = document.getElementById('history');
+            const lifeBar = document.getElementById('life-bar');
+            tentativas++;
+
+            if (!chute) {
+                alert('⚠️ Antes você precisa Inserir um número de 1 a 200');
+                return;
+            }
+
+            if (tentativas > maxTentativas) {
+                message.textContent = `${nomeUsuario} Você excedeu o número máximo de tentativas. O número era ${numeroSecreto}.
+clique em "Reiniciar".`;
+                message.style.color = 'red';
+                adicionarMensagemSistema(`<span class="cor-r">[⚙️ SYSTEM] ${nomeUsuario} Você Excedeu o número máximo de tentativas | erros: ${erros} | tentativas: ${tentativas} | ${new Date().toLocaleTimeString()}</span>`);
+                piscarElemento(message, 'orange');
+                return;
+            }
+
+            historico.push(chute);
+            history.innerHTML += `<p>[⚙️ SYSTEM] ${nomeUsuario} ${chute === numeroSecreto ? 'Acertou!' : 'Errou!'} [ erros: ${erros} | tentativas: ${tentativas} | ${new Date().toLocaleTimeString()} ]</p>`;
+
+            if (chute === numeroSecreto) {
+                message.textContent = `🎉 Parabéns! ${nomeUsuario} Você acertou em ${tentativas} tentativas.`;
+                message.style.color = 'green';
+                adicionarMensagemSistema(`<p class="changing-color">[⚙️ SYSTEM] ${nomeUsuario} Ganhou a partida! | erros: ${erros} | tentativas: ${tentativas} | ${new Date().toLocaleTimeString()}</p>`);
+                piscarElemento(message, 'green');
+            } else {
+                erros++;
+                document.getElementById('errores').textContent = `❌ Erros: ${erros}/20 | ♥️ +1 extra`;
+                    
+                atualizarBarraDeVida(erros);
+                if (chute < numeroSecreto) {
+                    message.textContent = '⬆️ Tente um número maior.';
+                    message.style.color = 'Cyan';
+                } else {
+                    message.textContent = '⬇️ Tente um número menor.';
+                    message.style.color = 'red';
+                }
+                piscarElemento(message, 'red');
+            }
+        }
+
+        // Função para reiniciar o jogo
+        function reiniciarJogo() {
+            numeroSecreto = Math.floor(Math.random() * 200) + 1;
+            tentativas = 0;
+            erros = 0;
+            historico = [];
+            dicaUsada = false;
+            document.getElementById('message').textContent = '';
+            document.getElementById('history').innerHTML = '';
+            document.getElementById('chute').value = '';
+            document.getElementById('life-bar').innerHTML = '💙 [ |||||||||||||||||||||||||||||||||||||| ] 200%';
+            document.getElementById('botaoDica').disabled = false;
+            document.getElementById('errores').textContent = '❌ Erros: Nenhum erro';
+            adicionarMensagemSistema('<p class="changing-color">[⚙️ SYSTEM] Jogo reiniciado</p>');
+        }
+        // Função para adicionar mensagens do sistema ao histórico
+        function adicionarMensagemSistema(mensagem) {
+            const history = document.getElementById('history');
+            history.innerHTML += `<p>${mensagem}</p>`;
+        }
+
+        // Função para fazer o elemento piscar
+        function piscarElemento(elemento, cor) {
+            elemento.style.backgroundColor = cor;
+            setTimeout(() => elemento.style.backgroundColor = '', 600);
+            setTimeout(() => elemento.style.backgroundColor = cor, 1000);
+            setTimeout(() => elemento.style.backgroundColor = '', 1500);
+        }
+
+        // Função para atualizar a barra de vida
+        function atualizarBarraDeVida(erros) {
+            const lifeBar = document.getElementById('life-bar');
+            const vida = Math.max(0, 200 - (erros * 10));
+            const barras = '|'.repeat(vida / 3);
+            lifeBar.innerHTML = `💔 [ ${barras.padEnd(20, ' ')} ] ${vida}%`;
+        }
+
+        // Função para dar uma dica
+        function darDica() {
+            const message = document.getElementById('message');
+            if (!dicaUsada) {
+                message.textContent = `Dica: O número está entre ${numeroSecreto - 10} e ${numeroSecreto + 10}.`;
+                message.style.color = 'orange';
+                adicionarMensagemSistema(`<i class="changing-color"><b>[⚙️ SYSTEM] ${nomeUsuario}</b> Usou a Dica. "O número está entre ${numeroSecreto - 10} e ${numeroSecreto + 10}" | ${new Date().toLocaleTimeString()}</i>`);
+                document.getElementById('botaoDica').disabled = true;
+                dicaUsada = true;
+            }
+        }
+
+
+</script>
+</body>
+</html>
