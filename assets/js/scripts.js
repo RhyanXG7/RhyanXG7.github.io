@@ -21,7 +21,7 @@ ip.addEventListener('click', function () {
 //
 //  STATUS DO SERVIDOR
 //
-$.getJSON('https://api.minetools.eu/ping/games.hostza.org/60224', function(data) {
+$.getJSON('https://api.minetools.eu/ping/dns.hostza.org:45581', function(data) {
   if (data.error) {
     $('#status').html('<i class="fas fa-times"></i> Servidor offline');
     $('#motd').html('-');
