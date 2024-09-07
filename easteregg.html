@@ -123,10 +123,10 @@
 
     <script>
 
-        // Gere um número aleatório entre 1 e 200
+        // Essa merda gera um número aleatório entre 1 e 200 🧐
         let numeroSecreto = Math.floor(Math.random() * 200) + 1;
 
-        // Inicialize o número de tentativas e erros
+        // APRENDE OU JOGA NO GPT PRA SABER PRA Q SERVE.
         let tentativas = 0;
         let erros = 0;
         let maxTentativas = 20;
@@ -134,7 +134,7 @@
         let nomeUsuario = '';
         let dicaUsada = false;
 
-        // Função para definir o nome do usuário
+        // ESSA PORRA AQUI DEFINE O NOME DO USUÁRIO 😲🤔
         function definirNomeUsuario() {
             nomeUsuario = prompt('Insira um Nome');
             if (nomeUsuario) {
@@ -143,15 +143,16 @@
                     alert('O jogo começará em 1 minuto.');
                 }, 60000);
             } else {
-                alert('⚠️ Por favor, insira um nome de usuário.');
+                alert('MANO, COLOCA UM NOME DE USUÁRIO AI..');
                 definirNomeUsuario();
             }
         }
 
-        // Chama a função para definir o nome do usuário ao carregar a página
+        // DEFINE O NOME DO CORNO(A) AO ATUALIZAR A PAGE
         window.onload = definirNomeUsuario;
 
-        // Função para verificar a adivinhação do jogador
+
+        // VERIFICA O NÚMERO DO USUÁRIO DIVIDIDO POR 90
         function verificarAdivinhacao() {
             const chute = parseInt(document.getElementById('chute').value);
             const message = document.getElementById('message');
@@ -160,7 +161,7 @@
             tentativas++;
 
             if (!chute) {
-                alert('⚠️ Antes você precisa Inserir um número de 1 a 200');
+                alert('🔴 EI! insira um número de 1 a 200 ou saia do site.);
                 return;
             }
 
@@ -197,7 +198,7 @@ clique em "Reiniciar".`;
             }
         }
 
-        // Função para reiniciar o jogo
+        // Reinicia a merda do jogo
         function reiniciarJogo() {
             numeroSecreto = Math.floor(Math.random() * 200) + 1;
             tentativas = 0;
@@ -212,13 +213,13 @@ clique em "Reiniciar".`;
             document.getElementById('errores').textContent = '❌ Erros: Nenhum erro';
             adicionarMensagemSistema('<p class="changing-color">[⚙️ SYSTEM] Jogo reiniciado</p>');
         }
-        // Função para adicionar mensagens do sistema ao histórico
+        // Adiciona coisas ao seu histórico do X
         function adicionarMensagemSistema(mensagem) {
             const history = document.getElementById('history');
             history.innerHTML += `<p>${mensagem}</p>`;
         }
 
-        // Função para fazer o elemento piscar
+        // Isso faz Piscar
         function piscarElemento(elemento, cor) {
             elemento.style.backgroundColor = cor;
             setTimeout(() => elemento.style.backgroundColor = '', 600);
@@ -226,7 +227,7 @@ clique em "Reiniciar".`;
             setTimeout(() => elemento.style.backgroundColor = '', 1500);
         }
 
-        // Função para atualizar a barra de vida
+        // BARRA DE VÍDEO DO YT MAIS CONHECIDA COMO VIDA
         function atualizarBarraDeVida(erros) {
             const lifeBar = document.getElementById('life-bar');
             const vida = Math.max(0, 200 - (erros * 10));
@@ -234,7 +235,7 @@ clique em "Reiniciar".`;
             lifeBar.innerHTML = `💔 [ ${barras.padEnd(20, ' ')} ] ${vida}%`;
         }
 
-        // Função para dar uma dica
+        // DÁ A PORQUEIRA DA DICA 😢👍
         function darDica() {
             const message = document.getElementById('message');
             if (!dicaUsada) {
