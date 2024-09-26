@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Reginaldoo face reveal TIME">
+    <meta property="og:description" content="RseekerHub o seu exploit favorito!">
+    <meta property="og:url" content="https://discord.gg/reginaldoo">
+    <meta property="og:image" content="A">
+    <link rel="shortcut icon" href="assets/images/logo.pnh" type="image/x-icon">
+    <title>SeekerHub</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('assets/images/fundo.png');
+            width: 100wh;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 99%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .center {
+            color: white;
+            border-radius: 30px;
+            width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 450px;
+            background-color: rgba(0, 0, 0, 0.473);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        #logo {
+            width: 130px;
+            padding-top: 10px;
+        }
+
+        #txt1 {
+            font-size: 30pt;
+            font-family: 'Poppins';
+            font-weight: 600;
+            color: #aa4fff;
+            animation: txt1 infinite 2s ease-in-out alternate;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        @keyframes txt1 {
+            0% { text-shadow: 0 0 5px #aa4fff; }
+            100% { text-shadow: 0 0 20px #aa4fff;}
+        }
+
+        span {
+            font-family: 'Poppins';
+            font-weight: 200;
+            font-size: 20px;
+            color: #c287fa;
+        }
+
+        .countdown {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .dd1 {
+            background-color: rgba(46, 32, 71, 0.699);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 20pt;
+            justify-content: center;
+            width: 120px;
+            height: 140px;
+            border-radius: 10px;
+            font-family: 'Poppins';
+            font-weight: 600;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .dd1 span, .dd1 {
+            transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+        }
+
+        .dd1:hover {
+            transform: scale(1.05);
+            color: #ff0000;
+        }
+
+        .social-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-button {
+            background-color: #5865F2;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-button:hover {
+            background-color: #404EED;
+        }
+
+        @media screen and (width < 600px) {
+            .center {
+                width: 350px;
+                height: 400px;
+            }
+
+            .countdown {
+                width: 90%;
+                gap: 10px;
+            }
+
+            .dd1 {
+                font-size: 16pt;
+                width: 90px;
+                height: 100px;
+            }
+        }
+
+        /* Animação para o texto final */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .launch-message {
+            font-size: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #aa4fff;
+            animation: fadeIn 2s ease-in-out forwards;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <main>
+        <section class="center">
+            <header>
+                <img id="logo" src="assets/images/logo.png" alt="TIRA REGINALDOO">
+                <h1 id="txt1">Reginaldoo</h1>
+            </header>
+            <span>Face Reveal em</span>
+
+            <div class="countdown">
+                <div id="Dias" class="dd1">
+                    00
+                    <span>Dias</span>
+                </div>
+                <div id="horas" class="dd1">
+                    00
+                    <span>horas</span>
+                </div>
+                <div id="minutos" class="dd1">
+                    00
+                    <span>minutos</span>
+                </div>
+                <div id="segundos" class="dd1">
+                    00
+                    <span>segundos</span>
+                </div>
+            </div>
+
+            <div class="social-buttons">
+                <a href="https://discord.gg/reginaldoo" class="social-button">Discord</a>
+                <a href="https://youtube.com/@rhyan57." class="social-button" style="background-color: #FF0000;">Youtube</a>
+                <a href="https://rhyanxg7.github.io/easteregg" class="social-button" style="background-color: #9dabff;">Easter egg</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        const targetDate = new Date("September 27, 2024 11:00:00").getTime();
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const formatNumber = (number) => {
+                return number < 10 ? '0' + number : number;
+            };
+
+            document.getElementById("Dias").innerHTML = formatNumber(days) + "<span>Dias</span>";
+            document.getElementById("horas").innerHTML = formatNumber(hours) + "<span>Horas</span>";
+            document.getElementById("minutos").innerHTML = formatNumber(minutes) + "<span>Minutos</span>";
+            document.getElementById("segundos").innerHTML = formatNumber(seconds) + "<span>Segundos</span>";
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.querySelector(".countdown").innerHTML = '<div class="launch-message">SeekerHub Lançado!</div>';
+                
+                
+                setTimeout(() => {
+                    window.location.href = "https://youtube.com/@reginaldoo";
+                }, 5000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
