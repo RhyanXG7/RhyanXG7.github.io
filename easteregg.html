@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Adivinhação</title>
+     <meta property="og:type" content="Easteregg Dream Ruim | Tela Incial">
+    <meta property="og:description" content="Easteregg | Vem jogar e mostrar o valor da sua ruimdade..">
+    <meta property="og:url" content="https://rhyanxg7.github.io/easteregg">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Rhyan890/rhyan890.github.io/refs/heads/main/images/easteregg-img/3274233701_6516141723_1725063396500.png">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/SeekerWebS/seekerwebs.github.io/main/images/back/IconFav.png" type="image/x-icon">
+   
+    <title id="gameTitle">Jogo de Adivinhação</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,22 +17,38 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #ffffff;
-            transition: backdrop-filter 0.3s ease;
+            margin: 0;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            transition: background 0.5s ease;
             position: relative;
         }
         .container {
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 19px;
+            padding: 30px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
+            width: 350px;
         }
-        input[type="number"] {
+        #timer {
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: default;
+            border: none;
+        }
+        input[type="number"], input[type="text"] {
             padding: 10px;
             font-size: 16px;
             margin: 10px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         button {
             padding: 10px 20px;
@@ -34,6 +56,7 @@
             cursor: pointer;
             border: none;
             border-radius: 5px;
+            margin: 5px;
             transition: background-color 0.3s ease;
         }
         #verificar {
@@ -51,212 +74,351 @@
             background-color: #FF5722;
             color: white;
         }
-        .message {
+        .message, .history {
             margin-top: 20px;
             font-size: 18px;
         }
         .history {
-            margin-top: 20px;
-            font-size: 14px;
             text-align: left;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
+            background-color: #fff;
             padding: 10px;
-            background: #f9f9f9;
-        }
-        .blinking {
-            animation: blink 1s steps(5, start) infinite;
-        }
-        @keyframes blink {
-            to { visibility: hidden; }
-        }
-        .changing-color {
-            animation: colorChange 3s infinite;
-        }
-        @keyframes colorChange {
-            0% { color: red; }
-            15% { color: orange; }
-            25% { color: blue; }
-            35% { color: black; }
-            45% { color: #9dabff; }
-            50% { color: purple; }
-            75% { color: cyan; }
-            100% { color: red; }
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow-y: auto;
         }
         .life-bar {
-            margin-top: 10px;
-            font-size: 14px;
-            height: 20px;
             width: 100%;
+            height: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
             background: linear-gradient(to right, green, yellow, red);
-            border-radius: 10px;
         }
         .life {
             height: 100%;
-            border-radius: 10px;
+            border-radius: 5px;
+            background: green;
+            width: 100%;
             transition: width 0.5s ease;
         }
-        .player-name {
-            color: purple;
-        }
-        .blur {
-            backdrop-filter: blur(5px);
-        }
         .celebration {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
             font-size: 50px;
-            animation: move 2s infinite alternate;
             display: none;
+            animation: celebrationMove 2s infinite alternate;
         }
-        @keyframes move {
-            0% { transform: translate(-50%, 0); }
-            100% { transform: translate(-30%, 0); }
+        @keyframes celebrationMove {
+            from { transform: translateX(-50px); }
+            to { transform: translateX(50px); }
         }
-        .play-again {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #4CAF50;
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        #deathScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-align: center;
+        }
+        #creditsScreen {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #creditsContent {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            position: relative;
+        }
+        #creditsImage {
+            width: 100%;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
+    <button id="timer">Tempo: 00:00</button>
+
     <div class="container">
-        <h1 class="changing-color"><b>Adivinhe o Número</b></h1>
-        <p><b>📝 Tente Adivinhar o Número de 1 a 200</b></p>
-        <div id="errores"><b>❌ Erros: Nenhum erro</b></div>
-        <input type="number" id="chute" min="1" max="200" placeholder="Resposta...">
+        <h1 id="gameTitle">Adivinhe o Número</h1>
+        <p id="welcomeMessage"></p>
+        <p>Tente adivinhar o número secreto!</p>
+
+        <label for="modoDificuldade">Escolha o modo de jogo:</label>
+        <select id="modoDificuldade" onchange="selecionarModo()">
+            <option value="normal">Normal</option>
+            <option value="facil">Fácil</option>
+            <option value="dificil">Difícil</option>
+            <option value="hardcore">Hardcore</option>
+            <option value="rhyan">Rhyan Mode</option>
+            <option value="timer">Timer Mode</option>
+        </select>
+
+        <input type="number" id="chute" min="1" max="400" placeholder="Digite sua Resposta...">
         <button id="verificar" onclick="verificarAdivinhacao()">Verificar</button>
         <button id="botaoDica" onclick="darDica()">Dica</button>
         <button id="reiniciar" onclick="reiniciarJogo()">Reiniciar</button>
+
         <div class="message" id="message"></div>
         <div class="history" id="history"></div>
-        <div class="life-bar" id="life-bar"><div class="life" id="life"></div></div>
-        <p><b>⚙️ Desenvolvido por <span class="changing-color">Rhyan57</span></b></p>
+        <div class="life-bar"><div class="life" id="life"></div></div>
         <div class="celebration" id="celebration">🎉</div>
-        <button class="play-again" id="play-again" onclick="reiniciarJogo()">Jogar Novamente</button>
-        <a href="https://rhyanxg7.github.io/index.html" target="_blank">Inicial</a>
+        
+        <div id="porcentagemVida"></div>
+        <button onclick="verEstatisticas()">Ver Estatísticas</button>
+        <button onclick="abrirCreditos()">Créditos</button>
+    </div>
+
+    <!-- Modal de vitória -->
+    <div class="modal" id="modalVitoria">
+        <div class="modal-content">
+            <h2>🎉 GG!</h2>
+            <p>🙀 Você acertou o número em <span id="tentativasVitoria"></span> tentativas!</p>
+            <button onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Tela de Morte -->
+    <div id="deathScreen">
+        <div>
+            <h2>Game Over</h2>
+            <p>Você perdeu, <span id="deathPlayerName"></span>! O número era <span id="deathNumber"></span>.</p>
+            <button onclick="reiniciarJogo()">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Tela de Créditos -->
+    <div id="creditsScreen">
+        <div id="creditsContent">
+            <h2>Créditos</h2>
+            <img id="creditsImage" src="https://raw.githubusercontent.com/Rhyan890/rhyan890.github.io/refs/heads/main/images/easteregg-img/3274233701_6516141723_1725063396500.png" alt="Dream Ruimzão kkkkkk">
+            <p>Desenvolvedor: Rhyan57</p>
+            <p>Descrição: Já tá podendo rir né? Jogou e não deixou o like....</p>
+            <button onclick="fecharCreditos()">Fechar</button>
+        </div>
     </div>
 
     <script>
-        let numeroSecreto = Math.floor(Math.random() * 200) + 1;
-        let tentativas = 0;
-        let erros = 0;
-        let maxTentativas = 20;
-        let historico = [];
-        let nomeUsuario = '';
-        let dicaUsada = false;
+        let numeroSecreto, tentativas = 0, erros = 0, modoDificuldade = 'normal';
+        let tempoInicio, nomeUsuario = '', maxErros = 20, timerMode = false;
+        let tempoAtualizado = null;
 
         function definirNomeUsuario() {
-            nomeUsuario = prompt('Insira um Nome');
-            if (nomeUsuario) {
-                adicionarMensagemSistema(`<p class="changing-color"><b>${nomeUsuario}</b> Seja Bem Vindo(a)!</p>`);
-            } else {
-                alert('Por favor, insira um nome.');
-                definirNomeUsuario();
-            }
+            nomeUsuario = prompt('Insira seu nome:');
+            document.getElementById('welcomeMessage').textContent = `Bem-vindo(a), ${nomeUsuario}!`;
+            mudarCorFundo(nomeUsuario);
         }
 
-        window.onload = definirNomeUsuario;
+                window.onload = function() {
+            definirNomeUsuario();
+            iniciarTimer();
+            reiniciarJogo();
+        }
+
+        function mudarCorFundo(nome) {
+            const cores = ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ffcc99'];
+            document.body.style.backgroundColor = cores[nome.length % cores.length];
+        }
+
+        function iniciarTimer() {
+            tempoInicio = new Date();
+            tempoAtualizado = setInterval(function() {
+                const agora = new Date();
+                const diferenca = Math.floor((agora - tempoInicio) / 1000);
+                const minutos = Math.floor(diferenca / 60).toString().padStart(2, '0');
+                const segundos = (diferenca % 60).toString().padStart(2, '0');
+                document.getElementById('timer').textContent = `Tempo: ${minutos}:${segundos}`;
+            }, 1000);
+        }
+
+        function selecionarModo() {
+            const modo = document.getElementById('modoDificuldade').value;
+            switch(modo) {
+                case 'facil':
+                    numeroSecreto = gerarNumeroPar(1, 200);
+                    maxErros = 30;
+                    break;
+                case 'normal':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1;
+                    maxErros = 20;
+                    break;
+                case 'dificil':
+                    numeroSecreto = Math.floor(Math.random() * 400) + 1;
+                    maxErros = 20;
+                    break;
+                case 'hardcore':
+                    numeroSecreto = (Math.random() * 400).toFixed(2); // Inclui decimais
+                    maxErros = 40;
+                    break;
+                case 'rhyan':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1;
+                    maxErros = 20;
+                    break;
+                case 'timer':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1; // Para o modo timer
+                    maxErros = 20;
+                    iniciarTimer();
+                    break;
+            }
+            modoDificuldade = modo;
+            reiniciarJogo();
+            adicionarMensagemSistema(`Modo de jogo alterado para: ${modo}`);
+        }
+
+        function gerarNumeroPar(min, max) {
+            let numero;
+            do {
+                numero = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (numero % 2 !== 0);
+            return numero;
+        }
 
         function verificarAdivinhacao() {
-            const chute = parseInt(document.getElementById('chute').value);
+            const chute = parseFloat(document.getElementById('chute').value);
             const message = document.getElementById('message');
-            const history = document.getElementById('history');
-            const life = document.getElementById('life');
             tentativas++;
 
-            if (!chute || chute < 1 || chute > 200) {
-                alert('🔴 Insira um número válido de 1 a 200.');
+            if (isNaN(chute) || chute < 1 || chute > 400) {
+                alert('Insira um número válido.');
                 return;
             }
 
-            if (tentativas > maxTentativas) {
-                message.textContent = `${nomeUsuario}, você excedeu o número máximo de tentativas. O número era ${numeroSecreto}.`;
-                message.style.color = 'red';
-                bloquearBotoes();
-                return;
-            }
-
-            historico.push(chute);
-            history.innerHTML += `<p>[⚙️ SYSTEM] ${nomeUsuario} ${chute === numeroSecreto ? 'Acertou!' : 'Errou!'}</p>`;
-
-            if (chute === numeroSecreto) {
-                message.textContent = `🎉 Parabéns! ${nomeUsuario}, você acertou em ${tentativas} tentativas.`;
-                message.style.color = 'green';
-                document.getElementById('celebration').style.display = 'block';
-                document.getElementById('play-again').style.display = 'block';
-                document.body.classList.add('blur');
+            // Rhyan Mode: Sempre acerta
+            if (modoDificuldade === 'rhyan' || chute === numeroSecreto) {
+                message.textContent = `Parabéns, ${nomeUsuario}! Você acertou o número em ${tentativas} tentativas!`;
+                abrirModal();
                 bloquearBotoes();
             } else {
                 erros++;
-                document.getElementById('errores').textContent = `❌ Erros: ${erros}/${maxTentativas}`;
-                atualizarBarraDeVida(erros);
-                message.textContent = chute < numeroSecreto ? '⬆️ Tente um número maior.' : '⬇️ Tente um número menor.';
-                message.style.color = 'cyan';
+                atualizarBarraDeVida();
+                message.textContent = chute < numeroSecreto ? 'Tente um número maior!' : 'Tente um número menor!';
             }
+
+            document.getElementById('history').innerHTML += `<p>Tentativa ${tentativas}: ${chute} ${chute === numeroSecreto ? '(Acertou)' : '(Errou)'}</p>`;
         }
 
         function reiniciarJogo() {
-            numeroSecreto = Math.floor(Math.random() * 200) + 1;
             tentativas = 0;
             erros = 0;
-            historico = [];
-            dicaUsada = false;
             document.getElementById('message').textContent = '';
             document.getElementById('history').innerHTML = '';
-            document.getElementById('chute').value = '';
-            document.getElementById('errores').textContent = '❌ Erros: Nenhum erro';
             document.getElementById('life').style.width = '100%';
             document.getElementById('celebration').style.display = 'none';
-            document.getElementById('play-again').style.display = 'none';
-            document.body.classList.remove('blur');
-            document.getElementById('verificar').disabled = false;
-        }
+            desbloquearBotoes();
+            document.getElementById('porcentagemVida').textContent = '♥️ vida: 100%';
 
-        function adicionarMensagemSistema(mensagem) {
-            const history = document.getElementById('history');
-                        history.innerHTML += `<p>${mensagem}</p>`;
-        }
-
-        function atualizarBarraDeVida(erros) {
-            const life = document.getElementById('life');
-            const vida = Math.max(0, 100 - (erros * 5));
-            life.style.width = vida + '%';
-            if (vida > 50) {
-                life.style.backgroundColor = 'green';
-            } else if (vida > 20) {
-                life.style.backgroundColor = 'yellow';
-            } else {
-                life.style.backgroundColor = 'red';
+            switch(modoDificuldade) {
+                case 'facil':
+                    numeroSecreto = gerarNumeroPar(1, 200);
+                    break;
+                case 'normal':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1;
+                    break;
+                case 'dificil':
+                    numeroSecreto = Math.floor(Math.random() * 400) + 1;
+                    break;
+                case 'hardcore':
+                    numeroSecreto = (Math.random() * 400).toFixed(2);
+                    break;
+                case 'rhyan':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1;
+                    break;
+                case 'timer':
+                    numeroSecreto = Math.floor(Math.random() * 200) + 1;
+                    break;
             }
+            document.getElementById('deathScreen').style.display = 'none';
+        }
+
+        function atualizarBarraDeVida() {
+            const vida = Math.max(0, 100 - (erros * (100 / maxErros)));
+            document.getElementById('life').style.width = vida + '%';
+            document.getElementById('porcentagemVida').textContent = `♥️ vida: ${vida}%`;
+            if (vida <= 0) {
+                mostrarTelaMorte();
+            }
+        }
+
+        function mostrarTelaMorte() {
+            document.getElementById('deathPlayerName').textContent = nomeUsuario;
+            document.getElementById('deathNumber').textContent = numeroSecreto;
+            document.getElementById('deathScreen').style.display = 'flex';
+            bloquearBotoes();
         }
 
         function darDica() {
             const message = document.getElementById('message');
-            if (!dicaUsada) {
-                message.textContent = `Dica: O número está entre ${numeroSecreto - 10} e ${numeroSecreto + 10}.`;
-                message.style.color = 'orange';
-                dicaUsada = true;
-            }
+            message.textContent = `🤓 Dica: O número está entre ${numeroSecreto - 10} e ${numeroSecreto + 10}.`;
         }
 
         function bloquearBotoes() {
             document.getElementById('verificar').disabled = true;
+            document.getElementById('botaoDica').disabled = true;
         }
+
+        function desbloquearBotoes() {
+            document.getElementById('verificar').disabled = false;
+            document.getElementById('botaoDica').disabled = false;
+        }
+
+        function abrirModal() {
+            document.getElementById('tentativasVitoria').textContent = tentativas;
+            document.getElementById('modalVitoria').style.display = 'flex';
+            clearInterval(tempoAtualizado);
+        }
+
+        function fecharModal() {
+            document.getElementById('modalVitoria').style.display = 'none';
+            reiniciarJogo();
+        }
+
+        function verEstatisticas() {
+            const acertos = tentativas - erros;
+            alert(`🟢Total de acertos: ${acertos}\n🔴Total de erros: ${erros}`);
+        }
+
+        function abrirCreditos() {
+            document.getElementById('creditsScreen').style.display = 'flex';
+        }
+
+        function fecharCreditos() {
+            document.getElementById('creditsScreen').style.display = 'none';
+        }
+
     </script>
 </body>
 </html>
