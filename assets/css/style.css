@@ -234,14 +234,14 @@ a.is-muted:hover {
 }
 
 .button.is-primary {
-  background-color: var(--destaque);
+  background-color: A700FF;
   border-color: var(--destaque);
 }
 
 .button.is-primary:hover,
 .button.is-primary:focus,
 .button.is-primary:active {
-  background-color: var(--destaque-escuro);
+  background-color: A700FF;
   border-color: var(--destaque-escuro);
 }
 
