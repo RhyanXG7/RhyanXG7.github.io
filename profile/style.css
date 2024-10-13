@@ -127,7 +127,63 @@ body {
     font-size: 0.8rem;
     white-space: nowrap;
 }
+/* Redes Sociais */
+.social-links-section {
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    animation: glow 3s infinite alternate;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
+#social-links-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.social-link {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-link-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre a imagem e o título */
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.social-link:hover {
+    background: linear-gradient(45deg, #7B2CBF, #9D4EDD, #C77DFF);
+    transform: rotate(5deg);
+}
+
+.social-link h3 a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.social-link p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
 /* Player de Música Neon */
 
 .music-player {
@@ -180,7 +236,7 @@ body {
     100% { transform: scale(1); }
 }
 
-/* Card de tópicos com efeitos */
+/* Card de tópicos */
 .content-card-advanced {
     width: 400px;
     background-color: rgba(0, 0, 0, 0.6);
