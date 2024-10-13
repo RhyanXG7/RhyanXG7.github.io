@@ -1,0 +1,225 @@
+/* Estilos Gerais */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Ajusta o conteúdo para o topo */
+    background-image: url('https://raw.githubusercontent.com/Rhyan890/profile/refs/heads/main/rhyan57/v2/fundo.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+
+.neon-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ff004c, #d500ff, #4a00ff, #00bfff, #00ff6a, #ffff00);
+    background-size: 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 5s ease-in-out infinite;
+    margin-bottom: 140px;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Card de perfil futurista com animação hover */
+.profile-card-advanced {
+    position: relative;
+    width: 400px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card-advanced:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+}
+
+.banner-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.profile {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.profile-info {
+    margin-top: 100px;
+}
+
+.bio {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.badge {
+    margin: 0 10px;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.badge img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.badge:hover img {
+    transform: rotate(360deg);
+}
+
+.badge:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* Player de Música Neon */
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    animation: glow-music 2s infinite alternate;
+}
+
+@keyframes glow-music {
+    0% { box-shadow: 0 0 10px #ff00ff; }
+    100% { box-shadow: 0 0 20px #00ffff; }
+}
+
+.music-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.music-playlist {
+    margin-top: 10px;
+}
+
+.music-playlist ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.music-playlist li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.music-playlist li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animação de pulsação nas insígnias */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Card de tópicos com efeitos */
+.content-card-advanced {
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px #ff00ff; }
+    100% { box-shadow: 0 0 20px #00ffff; }
+}
+
+.topic {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.topic:hover {
+    background: linear-gradient(45deg, #7B2CBF, #9D4EDD, #C77DFF);
+    transform: rotate(5deg);
+}
+
+button {
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
