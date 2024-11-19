@@ -21,13 +21,13 @@ ip.addEventListener('click', function () {
 //
 //  STATUS DO SERVIDOR
 //
-$.getJSON('https://api.minetools.eu/ping/dns.hostza.org:45581', function(data) {
+$.getJSON('https://api.minetools.eu/ping/us-12.frac.gg:25298', function(data) {
   if (data.error) {
-    $('#status').html('<i class="fas fa-times"></i> Servidor offline');
+    $('#status').html('<i class="fas fa-times"></i> BetterStar Offline');
     $('#motd').html('-');
     $('#online').html('-');
   } else {
-    $('#status').html('<i class="fas fa-check"></i> Servidor online');
+    $('#status').html('<i class="fas fa-check"></i> BetterStar online');
     $('#motd').html(data.description.replace(/§(.+?)/gi, ''));
     $('#online').html(data.players.online);
   }
