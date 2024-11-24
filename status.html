@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status do Servidor - BetterStar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta property="og:description" content="BetterStar Status do servidor | Servidor de Minecraft!">
+    <meta property="og:url" content="https://rhyanxg7.github.io/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/SeekerWebS/seekerwebs.github.io/refs/heads/main/images/back/BetterStar.png">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/SeekerWebS/seekerwebs.github.io/refs/heads/main/images/back/BetterStar.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"></script>
+</head>
+
+<body>
+<!-- Header e Navbar -->
+<header class="section">
+  <div class="logo container">
+    <a href="index.html">
+      <img src="assets/img/logo.png">
+    </a>
+  </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a class="navbar-burger burger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a href="index.html" class="navbar-item"><i class="fas fa-home"></i> Início</a>
+          <a href="updates.html" class="navbar-item"><i class="fas fa-globe"></i> Posts</a>
+          <a href="regras.html" class="navbar-item"><i class="fas fa-book"></i> Regras</a>
+          <a href="votar.html" class="navbar-item"><i class="fas fa-vote-yea"></i> Votar</a>
+          <a href="https://discord.com/invite/SPKDvU9ryW" target="_blank" class="navbar-item"><i class="fas fa-comments"></i> Fórum</a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="loja.html" class="navbar-link"><i class="fas fa-shopping-cart"></i> Loja</a>
+            <div class="navbar-dropdown">
+              <a href="loja.html#vip" class="navbar-item"><i class="fas fa-gem"></i> Vips</a>
+              <a href="loja.html#chave" class="navbar-item"><i class="fas fa-key"></i> Chaves</a>
+              <a href="loja.html#moedas" class="navbar-item"><i class="fas fa-coins"></i> Moedas</a>
+              <a href="loja.html#unban" class="navbar-item"><i class="fas fa-ban"></i> Unban</a>
+              <hr class="navbar-divider">
+              <a href="termos.html" class="navbar-item">Informações importantes</a>
+            </div>
+          </div>
+          <a href="https://dsc.gg/betterstar" target="_blank" class="navbar-item"><i class="fab fa-discord"></i> Discord</a>
+          <a href="status.html" class="navbar-item"><i class="fas fa-server"></i> Status do Servidor</a>
+        </div>
+    
+        <div class="navbar-end">
+          <a id="ip" class="navbar-item">
+            <i class="fas fa-copy"></i> <span>https://dsc.gg/betterstar</span>
+            <textarea></textarea>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Conteúdo Principal -->
+<main class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <article class="article">
+          <h1 class="article-title"><i class="fas fa-server"></i> Status do Servidor</h1>
+          <div class="article-thumbnail" style="background-image:url(assets/img/server-thumbnail.png)"></div>
+          <div class="article-content">
+            <p><b>Detalhes sobre o servidor:</b></p>
+            <ul class="list">
+              <li><i class="fas fa-wifi"></i> Monitoramento em tempo real</li>
+              <li><i class="fas fa-check-circle"></i> Informação sobre jogadores online</li>
+              <li><i class="fas fa-info-circle"></i> Mensagens MOTD personalizadas</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Status do Servidor -->
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <article class="article">
+          <h1 class="article-title">Status do Servidor</h1>
+          <div id="server-status">
+            <p>Carregando informações do servidor...</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Rodapé -->
+<footer class="section">
+  <div class="container">
+    <article class="footer">
+      <span>BetterStar <script>document.write(new Date().getFullYear())</script> &copy; Todos os direitos reservados.</span>
+      <a href="https://youtube.com/@rhyan57." target="_blank" class="is-muted"><i class="fas fa-tools"></i> Modificado por Rhyan57 & FetoyuDev</a>
+    </article>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  const serverIP = "sp01.frac.gg";
+  const serverPort = "26497";
+  const serverAPI = `https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`;
+
+  async function fetchServerStatus() {
+    try {
+      const response = await fetch(serverAPI);
+      const data = await response.json();
+
+      const statusContainer = document.getElementById("server-status");
+      if (data.online) {
+        statusContainer.innerHTML = `
+          <p class="status online">Online</p>
+          <div class="server-details">
+            <span><strong>IP:</strong> ${data.ip}:${data.port}</span>
+            <span><strong>Jogadores:</strong> ${data.players.online}/${data.players.max}</span>
+            <span><strong>MOTD:</strong> ${data.motd.clean.join("<br>")}</span>
+          </div>
+          <div class="server-info">
+            <img src="https://api.mcsrvstat.us/icon/${serverIP}:${serverPort}" alt="Ícone do Servidor">
+            <p class="highlight">Servidor disponível! Conecte-se agora!</p>
+          </div>
+        `;
+      } else {
+        statusContainer.innerHTML = `
+          <p class="status offline">Offline</p>
+          <p class="highlight">O servidor está temporariamente indisponível. Tente novamente mais tarde.</p>
+        `;
+      }
+    } catch (error) {
+      console.error("Erro ao buscar status do servidor:", error);
+      document.getElementById("server-status").innerHTML = `
+        <p>Erro ao carregar informações do servidor. Por favor, tente novamente mais tarde.</p>
+      `;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchServerStatus);
+</script>
+</body>
+</html>
