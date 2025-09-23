@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterCloner - Legit</title>
+    <style>
+        :root {
+            --background-primary: #313338;
+            --background-secondary: #2b2d31;
+            --background-secondary-alt: #232428;
+            --background-tertiary: #1e1f22;
+            --background-accent: #4e5058;
+            --background-floating: #232428;
+            --channeltextarea-background: #383a40;
+            --text-normal: #dbdee1;
+            --text-muted: #b5bac1;
+            --text-link: #00a8fc;
+            --interactive-normal: #b5bac1;
+            --interactive-hover: #dbdee1;
+            --interactive-active: #ffffff;
+            --interactive-muted: #4e5058;
+            --brand-experiment: #5865f2;
+            --brand-experiment-hover: #4752c4;
+            --status-positive: #23a559;
+            --status-warning: #f0b232;
+            --status-danger: #f23f43;
+            --scrollbar-thin-thumb: #1a1b1e;
+            --scrollbar-thin-track: transparent;
+            --elevation-stroke: 0 0 0 1px hsla(0,0%,100%,.15);
+            --elevation-low: 0 1px 0 hsla(0,0%,100%,.06);
+            --elevation-medium: 0 4px 4px hsla(0,0%,0%,.16);
+            --elevation-high: 0 8px 16px hsla(0,0%,0%,.24);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--background-primary);
+            color: var(--text-normal);
+            line-height: 1.375;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: var(--background-secondary);
+            border-right: 1px solid var(--background-accent);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .user-panel {
+            padding: 16px;
+            background-color: var(--background-secondary-alt);
+            border-top: 1px solid var(--background-accent);
+            margin-top: auto;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+
+        .user-info:hover {
+            background-color: var(--background-tertiary);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--brand-experiment);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .user-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .user-status {
+            font-size: 12px;
+            line-height: 16px;
+            color: var(--text-muted);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--background-primary);
+        }
+
+        .header {
+            height: 48px;
+            background-color: var(--background-primary);
+            border-bottom: 1px solid var(--background-accent);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: var(--elevation-low);
+        }
+
+        .header-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-normal);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--brand-experiment);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            background-color: var(--background-secondary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--elevation-low);
+        }
+
+        .form-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-normal);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 40px;
+            background-color: var(--channeltextarea-background);
+            border: none;
+            border-radius: 3px;
+            padding: 10px 12px;
+            font-size: 16px;
+            color: var(--text-normal);
+            transition: border-color 0.15s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border: 1px solid var(--brand-experiment);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .server-preview {
+            background-color: var(--background-secondary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--background-accent);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .server-preview.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .server-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .server-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--brand-experiment);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            margin-right: 12px;
+            overflow: hidden;
+        }
+
+        .server-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .server-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .server-description {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat-card {
+            background-color: var(--background-tertiary);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--background-accent);
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--brand-experiment);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .clone-button {
+            width: 100%;
+            height: 44px;
+            background-color: var(--brand-experiment);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.17s ease;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clone-button:hover:not(:disabled) {
+            background-color: var(--brand-experiment-hover);
+        }
+
+        .clone-button:disabled {
+            background-color: var(--interactive-muted);
+            cursor: not-allowed;
+        }
+
+        .progress-section {
+            background-color: var(--background-secondary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--background-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--brand-experiment);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .logs-section {
+            background-color: var(--background-secondary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .logs-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .logs-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: var(--background-tertiary);
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .log-entry {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            padding: 4px 8px;
+            margin-bottom: 2px;
+            border-radius: 3px;
+            border-left: 3px solid transparent;
+            opacity: 0;
+            animation: fadeInLog 0.3s ease forwards;
+        }
+
+        @keyframes fadeInLog {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .log-entry.info { 
+            background-color: rgba(88, 101, 242, 0.1);
+            border-left-color: var(--brand-experiment);
+            color: #7289da;
+        }
+
+        .log-entry.success { 
+            background-color: rgba(35, 165, 89, 0.1);
+            border-left-color: var(--status-positive);
+            color: #43b581;
+        }
+
+        .log-entry.warning { 
+            background-color: rgba(240, 178, 50, 0.1);
+            border-left-color: var(--status-warning);
+            color: #faa61a;
+        }
+
+        .log-entry.error { 
+            background-color: rgba(242, 63, 67, 0.1);
+            border-left-color: var(--status-danger);
+            color: #f04747;
+        }
+
+        .log-category {
+            background-color: var(--background-accent);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 8px;
+            text-transform: uppercase;
+        }
+
+        .warning-box {
+            background-color: rgba(240, 178, 50, 0.1);
+            border: 1px solid var(--status-warning);
+            border-radius: 6px;
+            padding: 12px;
+            margin: 16px 0;
+            color: var(--status-warning);
+            font-size: 14px;
+        }
+
+        .scrollbar-container {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thin-thumb) var(--scrollbar-thin-track);
+        }
+
+        .scrollbar-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollbar-container::-webkit-scrollbar-track {
+            background: var(--scrollbar-thin-track);
+        }
+
+        .scrollbar-container::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thin-thumb);
+            border-radius: 4px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .content-area {
+                padding: 12px;
+            }
+            
+            .server-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="user-panel">
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <div class="user-details">
+                        <div class="username" id="username"></div>
+                        <div class="user-status">Assistindo: BetterCloner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="header-title">
+                    <div class="brand-icon">BC</div>
+                    BetterCloner - Sistema Avançado
+                </div>
+            </div>
+
+            <div class="content-area scrollbar-container">
+                <div class="form-container">
+                    <div class="form-section">
+                        <h3>Configuração da Clonagem</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Token do Discord *</label>
+                            <input type="password" class="form-input" id="userToken" placeholder="Seu token do Discord (usuário)">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">ID do Servidor de Origem *</label>
+                            <input type="text" class="form-input" id="sourceServerId" placeholder="ID do servidor para clonar">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">ID do Servidor de Destino *</label>
+                            <input type="text" class="form-input" id="targetServerId" placeholder="ID do servidor que receberá a clonagem">
+                        </div>
+                    </div>
+
+                    <div class="server-preview" id="sourceServerPreview">
+                        <h3>Servidor de Origem</h3>
+                        <div class="server-header">
+                            <div class="server-icon" id="sourceServerIcon"></div>
+                            <div class="server-details">
+                                <h4 id="sourceServerName"></h4>
+                                <div class="server-description" id="sourceServerDesc"></div>
+                            </div>
+                        </div>
+                        <div class="server-stats">
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceRoles">0</span>
+                                <span class="stat-label">Cargos</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceChannels">0</span>
+                                <span class="stat-label">Canais</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceCategories">0</span>
+                                <span class="stat-label">Categorias</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceMembers">0</span>
+                                <span class="stat-label">Membros</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceEmojis">0</span>
+                                <span class="stat-label">Emojis</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number" id="sourceBoosts">0</span>
+                                <span class="stat-label">Boosts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="server-preview" id="targetServerPreview">
+                        <h3>Servidor de Destino</h3>
+                        <div class="server-header">
+                            <div class="server-icon" id="targetServerIcon"></div>
+                            <div class="server-details">
+                                <h4 id="targetServerName"></h4>
+                                <div class="server-description" id="targetServerDesc"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        ⚠️ ATENÇÃO: Esta ferramenta realizará uma clonagem completa do servidor. Todos os canais, cargos e configurações existentes no servidor de destino serão substituídos. Use com responsabilidade.
+                    </div>
+
+                    <button class="clone-button" id="startCloneBtn" disabled>
+                        Iniciar Clonagem Avançada
+                    </button>
+
+                    <div class="progress-section" id="progressSection">
+                        <h3>Progresso da Clonagem</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Preparando...</div>
+                    </div>
+
+                    <div class="logs-section" id="logsSection">
+                        <div class="logs-header">
+                            <h3>Logs da Operação</h3>
+                        </div>
+                        <div class="logs-container scrollbar-container" id="logsContainer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class DiscordAPI {
+            constructor() {
+                this.baseURL = 'https://discord.com/api/v10';
+                this.token = null;
+            }
+
+            setToken(token) {
+                this.token = token;
+            }
+
+            async request(endpoint, method = 'GET', body = null) {
+                if (!this.token) throw new Error('Token não configurado');
+
+                const headers = {
+                    'Authorization': this.token,
+                    'Content-Type': 'application/json'
+                };
+
+                const options = { method, headers };
+                if (body) options.body = JSON.stringify(body);
+
+                const response = await fetch(`${this.baseURL}${endpoint}`, options);
+
+                if (response.status === 429) {
+                    const rateLimitData = await response.json();
+                    const retryAfter = rateLimitData.retry_after || 1;
+                    
+                    Logger.log(`Rate limit atingido. Aguardando ${retryAfter}s...`, 'warning', 'API');
+                    await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+                    return this.request(endpoint, method, body);
+                }
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`Discord API Error: ${response.status} - ${JSON.stringify(errorData)}`);
+                }
+
+                if (response.status === 204) return null;
+                return await response.json();
+            }
+
+            async getUserInfo() {
+                return await this.request('/users/@me');
+            }
+
+            async getGuildInfo(guildId) {
+                const [guild, roles, channels, emojis] = await Promise.all([
+                    this.request(`/guilds/${guildId}?with_counts=true`),
+                    this.request(`/guilds/${guildId}/roles`),
+                    this.request(`/guilds/${guildId}/channels`),
+                    this.request(`/guilds/${guildId}/emojis`)
+                ]);
+
+                return { ...guild, roles, channels, emojis };
+            }
+
+            async updatePresence(activity) {
+                const payload = {
+                    op: 3,
+                    d: {
+                        since: null,
+                        activities: [{
+                            name: activity.name,
+                            type: activity.type,
+                            url: activity.url
+                        }],
+                        status: 'online',
+                        afk: false
+                    }
+                };
+
+                try {
+                    const ws = new WebSocket('wss://gateway.discord.gg/?v=10&encoding=json');
+                    ws.onopen = () => {
+                        ws.send(JSON.stringify({
+                            op: 2,
+                            d: {
+                                token: this.token,
+                                properties: {
+                                    $os: 'browser',
+                                    $browser: 'BetterCloner',
+                                    $device: 'BetterCloner'
+                                }
+                            }
+                        }));
+                        
+                        setTimeout(() => {
+                            ws.send(JSON.stringify(payload));
+                            ws.close();
+                        }, 1000);
+                    };
+                } catch (error) {
+                    console.log('Não foi possível definir status personalizado');
+                }
+            }
+
+            async createRole(guildId, roleData) {
+                return await this.request(`/guilds/${guildId}/roles`, 'POST', roleData);
+            }
+
+            async createChannel(guildId, channelData) {
+                return await this.request(`/guilds/${guildId}/channels`, 'POST', channelData);
+            }
+
+            async updateChannelPermissions(channelId, overwrite) {
+                await this.request(`/channels/${channelId}/permissions/${overwrite.id}`, 'PUT', {
+                    allow: overwrite.allow,
+                    deny: overwrite.deny,
+                    type: overwrite.type
+                });
+            }
+
+            async updateGuild(guildId, guildData) {
+                return await this.request(`/guilds/${guildId}`, 'PATCH', guildData);
+            }
+
+            async deleteRole(guildId, roleId) {
+                await this.request(`/guilds/${guildId}/roles/${roleId}`, 'DELETE');
+            }
+
+            async deleteChannel(channelId) {
+                await this.request(`/channels/${channelId}`, 'DELETE');
+            }
+        }
+
+        class Logger {
+            static logs = [];
+
+            static log(message, type = 'info', category = 'GERAL') {
+                const timestamp = new Date().toLocaleTimeString();
+                const log = { message, type, category, timestamp };
+                
+                this.logs.push(log);
+                this.displayLog(log);
+                this.scrollToBottom();
+            }
+
+            static displayLog(log) {
+                const container = document.getElementById('logsContainer');
+                const logElement = document.createElement('div');
+                logElement.className = `log-entry ${log.type}`;
+                
+                logElement.innerHTML = `
+                    <span class="log-category">${log.category}</span>
+                    [${log.timestamp}] ${log.message}
+                `;
+                
+                container.appendChild(logElement);
+            }
+
+            static scrollToBottom() {
+                const container = document.getElementById('logsContainer');
+                container.scrollTop = container.scrollHeight;
+            }
+
+            static clear() {
+                this.logs = [];
+                document.getElementById('logsContainer').innerHTML = '';
+            }
+        }
+
+        class BetterCloner {
+            constructor() {
+                this.api = new DiscordAPI();
+                this.isCloning = false;
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                const userToken = document.getElementById('userToken');
+                const sourceId = document.getElementById('sourceServerId');
+                const targetId = document.getElementById('targetServerId');
+                const cloneBtn = document.getElementById('startCloneBtn');
+
+                userToken.addEventListener('input', this.handleTokenInput.bind(this));
+                sourceId.addEventListener('input', this.handleSourceIdInput.bind(this));
+                targetId.addEventListener('input', this.handleTargetIdInput.bind(this));
+                cloneBtn.addEventListener('click', this.startCloning.bind(this));
+            }
+
+            async handleTokenInput(event) {
+                const token = event.target.value.trim();
+                if (!token) return;
+
+                try {
+                    this.api.setToken(token);
+                    const user = await this.api.getUserInfo();
+                    this.displayUserInfo(user);
+                    
+                    await this.api.updatePresence({
+                        name: 'BetterCloner',
+                        type: 3,
+                        url: 'https://dsc.gg/betterstar'
+                    });
+
+                    Logger.log('Usuário autenticado com sucesso!', 'success', 'AUTH');
+                } catch (error) {
+                    Logger.log(`Erro na autenticação: ${error.message}`, 'error', 'AUTH');
+                    document.getElementById('userInfo').style.display = 'none';
+                }
+            }
+
+            async handleSourceIdInput(event) {
+                const serverId = event.target.value.trim();
+                const token = document.getElementById('userToken').value.trim();
+                
+                if (!token || !serverId) return;
+
+                try {
+                    const guild = await this.api.getGuildInfo(serverId);
+                    this.displayServerPreview(guild, 'source');
+                    this.checkCloneReadiness();
+                } catch (error) {
+                    Logger.log(`Erro ao carregar servidor de origem: ${error.message}`, 'error', 'SERVIDOR');
+                    document.getElementById('sourceServerPreview').classList.remove('visible');
+                }
+            }
+
+            async handleTargetIdInput(event) {
+                const serverId = event.target.value.trim();
+                const token = document.getElementById('userToken').value.trim();
+                
+                if (!token || !serverId) return;
+
+                try {
+                    const guild = await this.api.getGuildInfo(serverId);
+                    this.displayServerPreview(guild, 'target');
+                    this.checkCloneReadiness();
+                } catch (error) {
+                    Logger.log(`Erro ao carregar servidor de destino: ${error.message}`, 'error', 'SERVIDOR');
+                    document.getElementById('targetServerPreview').classList.remove('visible');
+                }
+            }
+
+            displayUserInfo(user) {
+                const userInfo = document.getElementById('userInfo');
+                const userAvatar = document.getElementById('userAvatar');
+                const username = document.getElementById('username');
+
+                if (user.avatar) {
+                    userAvatar.innerHTML = `<img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=32" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%;">`;
+                } else {
+                    userAvatar.textContent = user.username.charAt(0).toUpperCase();
+                }
+
+                username.textContent = user.global_name || user.username;
+                userInfo.style.display = 'flex';
+            }
+
+            displayServerPreview(guild, type) {
+                const prefix = type === 'source' ? 'source' : 'target';
+                const preview = document.getElementById(`${prefix}ServerPreview`);
+                const icon = document.getElementById(`${prefix}ServerIcon`);
+                const name = document.getElementById(`${prefix}ServerName`);
+                const desc = document.getElementById(`${prefix}ServerDesc`);
+
+                if (guild.icon) {
+                    icon.innerHTML = `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=48" alt="Server Icon">`;
+                } else {
+                    icon.textContent = guild.name.charAt(0).toUpperCase();
+                }
+
+                name.textContent = guild.name;
+                desc.textContent = guild.description || 'Sem descrição';
+
+                if (type === 'source') {
+                    document.getElementById('sourceRoles').textContent = guild.roles.length;
+                    document.getElementById('sourceChannels').textContent = guild.channels.length;
+                    document.getElementById('sourceCategories').textContent = guild.channels.filter(c => c.type === 4).length;
+                    document.getElementById('sourceMembers').textContent = guild.approximate_member_count || 0;
+                    document.getElementById('sourceEmojis').textContent = guild.emojis.length;
+                    document.getElementById('sourceBoosts').textContent = guild.premium_subscription_count || 0;
+                }
+
+                preview.classList.add('visible');
+            }
+
+            checkCloneReadiness() {
+                const token = document.getElementById('userToken').value.trim();
+                const sourceId = document.getElementById('sourceServerId').value.trim();
+                const targetId = document.getElementById('targetServerId').value.trim();
+                const cloneBtn = document.getElementById('startCloneBtn');
+
+                if (token && sourceId && targetId && sourceId !== targetId) {
+                    cloneBtn.disabled = false;
+                } else {
+                    cloneBtn.disabled = true;
+                }
+            }
+
+            async startCloning() {
+                if (this.isCloning) return;
+
+                const token = document.getElementById('userToken').value.trim();
+                const sourceId = document.getElementById('sourceServerId').value.trim();
+                const targetId = document.getElementById('targetServerId').value.trim();
+
+                if (!token || !sourceId || !targetId) {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                    return;
+                }
+
+                if (sourceId === targetId) {
+                    alert('O servidor de origem e destino não podem ser iguais.');
+                    return;
+                }
+
+                const confirmClone = confirm(
+                    'ATENÇÃO: Esta ação irá substituir completamente o servidor de destino. ' +
+                    'Todos os canais e cargos existentes serão removidos. Deseja continuar?'
+                );
+
+                if (!confirmClone) return;
+
+                this.isCloning = true;
+                this.showProgress();
+                Logger.clear();
+                document.getElementById('logsSection').style.display = 'block';
+
+                const cloneBtn = document.getElementById('startCloneBtn');
+                cloneBtn.innerHTML = '<div class="loading-spinner"></div>Clonando...';
+                cloneBtn.disabled = true;
+
+                try {
+                    this.api.setToken(token);
+
+                    Logger.log('🎵 Iniciando processo de clonagem avançada...', 'info', 'GERAL');
+                    this.updateProgress(5, 'Verificando autenticação...');
+
+                    const sourceGuild = await this.api.getGuildInfo(sourceId);
+                    Logger.log(`Servidor carregado: ${sourceGuild.name}`, 'success', 'SERVIDOR');
+                    Logger.log(`Cargos: ${sourceGuild.roles.length} | Canais: ${sourceGuild.channels.length} | Emojis: ${sourceGuild.emojis.length}`, 'info', 'STATS');
+                    this.updateProgress(10, 'Dados do servidor carregados');
+
+                    Logger.log('Preparando servidor de destino...', 'info', 'LIMPEZA');
+                    await this.cleanupTargetServer(targetId, sourceGuild);
+                    this.updateProgress(20, 'Servidor limpo');
+
+                    Logger.log('Aplicando configurações básicas...', 'info', 'SERVIDOR');
+                    await this.applyGuildSettings(sourceGuild, targetId);
+                    this.updateProgress(25, 'Configurações aplicadas');
+
+                    Logger.log('=== ETAPA 1: CLONAGEM DE CARGOS ===', 'info', 'CARGOS');
+                    const roleMap = await this.cloneRoles(sourceGuild, targetId);
+                    this.updateProgress(50, 'Cargos clonados');
+
+                    Logger.log('=== ETAPA 2: CLONAGEM DE CANAIS ===', 'info', 'CANAIS');
+                    const channelMap = await this.cloneChannels(sourceGuild, targetId, roleMap);
+                    this.updateProgress(75, 'Canais clonados');
+
+                    Logger.log('=== ETAPA 3: CONFIGURAÇÃO DE PERMISSÕES ===', 'info', 'PERMISSÕES');
+                    await this.configurePermissions(sourceGuild, channelMap, roleMap);
+                    this.updateProgress(90, 'Permissões configuradas');
+
+                    await this.configureSpecialChannels(sourceGuild, targetId, channelMap);
+                    this.updateProgress(100, 'Clonagem concluída!');
+
+                    Logger.log(`🎉 CLONAGEM FINALIZADA! Servidor "${sourceGuild.name}" clonado com sucesso!`, 'success', 'GERAL');
+
+                } catch (error) {
+                    Logger.log(`❌ Erro crítico durante a clonagem: ${error.message}`, 'error', 'GERAL');
+                    this.updateProgress(0, 'Erro na clonagem');
+                } finally {
+                    this.isCloning = false;
+                    cloneBtn.innerHTML = 'Iniciar Clonagem Avançada';
+                    cloneBtn.disabled = false;
+                }
+            }
+
+            showProgress() {
+                document.getElementById('progressSection').style.display = 'block';
+            }
+
+            updateProgress(percentage, text) {
+                const progressFill = document.getElementById('progressFill');
+                const progressText = document.getElementById('progressText');
+                
+                progressFill.style.width = `${percentage}%`;
+                progressText.textContent = text;
+            }
+
+            async cleanupTargetServer(guildId, sourceGuild) {
+                const targetGuild = await this.api.getGuildInfo(guildId);
+
+                Logger.log('Removendo canais existentes...', 'info', 'LIMPEZA');
+                const sortedChannels = [...targetGuild.channels].sort((a, b) => {
+                    if (a.parent_id && !b.parent_id) return -1;
+                    if (!a.parent_id && b.parent_id) return 1;
+                    return a.type === 4 ? 1 : -1;
+                });
+
+                for (const channel of sortedChannels) {
+                    try {
+                        await this.api.deleteChannel(channel.id);
+                        Logger.log(`Canal "${channel.name}" removido`, 'info', 'LIMPEZA');
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    } catch (error) {
+                        Logger.log(`Erro ao remover canal "${channel.name}": ${error.message}`, 'error', 'LIMPEZA');
+                    }
+                }
+
+                Logger.log('Removendo cargos existentes...', 'info', 'LIMPEZA');
+                const roles = targetGuild.roles.filter(role => role.name !== '@everyone');
+                const sortedRoles = [...roles].sort((a, b) => b.position - a.position);
+
+                for (const role of sortedRoles) {
+                    try {
+                        await this.api.deleteRole(guildId, role.id);
+                        Logger.log(`Cargo "${role.name}" removido`, 'info', 'LIMPEZA');
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    } catch (error) {
+                        Logger.log(`Erro ao remover cargo "${role.name}": ${error.message}`, 'error', 'LIMPEZA');
+                    }
+                }
+            }
+
+            async applyGuildSettings(sourceGuild, targetId) {
+                try {
+                    let iconBase64 = null;
+                    
+                    if (sourceGuild.icon) {
+                        Logger.log('Extraindo ícone do servidor...', 'info', 'SERVIDOR');
+                        const iconUrl = `https://cdn.discordapp.com/icons/${sourceGuild.id}/${sourceGuild.icon}.png?size=256`;
+                        const response = await fetch(iconUrl);
+                        
+                        if (response.ok) {
+                            const blob = await response.blob();
+                            iconBase64 = await new Promise((resolve) => {
+                                const reader = new FileReader();
+                                reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                                reader.onerror = () => resolve(null);
+                                reader.readAsDataURL(blob);
+                            });
+                            Logger.log('Ícone extraído com sucesso!', 'success', 'SERVIDOR');
+                        }
+                    }
+
+                    const guildData = {
+                        name: sourceGuild.name,
+                        description: sourceGuild.description || null,
+                        verification_level: sourceGuild.verification_level,
+                        explicit_content_filter: sourceGuild.explicit_content_filter,
+                        default_message_notifications: sourceGuild.default_message_notifications,
+                        afk_timeout: sourceGuild.afk_timeout,
+                        system_channel_flags: sourceGuild.system_channel_flags
+                    };
+
+                    if (iconBase64) {
+                        guildData.icon = iconBase64;
+                    }
+
+                    await this.api.updateGuild(targetId, guildData);
+                    Logger.log('Configurações básicas aplicadas!', 'success', 'SERVIDOR');
+
+                } catch (error) {
+                    Logger.log(`Erro ao aplicar configurações: ${error.message}`, 'error', 'SERVIDOR');
+                }
+            }
+
+            async cloneRoles(sourceGuild, targetId) {
+                const roleMap = new Map();
+                const sortedRoles = [...sourceGuild.roles]
+                    .filter(role => role.name !== '@everyone')
+                    .sort((a, b) => b.position - a.position);
+
+                let completed = 0;
+                const total = sortedRoles.length;
+
+                for (const role of sortedRoles) {
+                    Logger.log(`Criando cargo: ${role.name}`, 'info', 'CARGOS');
+                    
+                    try {
+                        const roleData = {
+                            name: role.name,
+                            color: role.color,
+                            hoist: role.hoist,
+                            permissions: role.permissions,
+                            mentionable: role.mentionable
+                        };
+
+                        if (role.unicode_emoji) {
+                            roleData.unicode_emoji = role.unicode_emoji;
+                        }
+
+                        const newRole = await this.api.createRole(targetId, roleData);
+                        roleMap.set(role.id, newRole.id);
+                        Logger.log(`Cargo "${role.name}" criado!`, 'success', 'CARGOS');
+
+                    } catch (error) {
+                        Logger.log(`Erro ao criar cargo "${role.name}": ${error.message}`, 'error', 'CARGOS');
+                    }
+
+                    completed++;
+                    const progress = 25 + (completed / total) * 25;
+                    this.updateProgress(progress, `Criando cargos: ${completed}/${total}`);
+                    
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+
+                Logger.log('=== CARGOS CLONADOS COM SUCESSO ===', 'success', 'CARGOS');
+                return roleMap;
+            }
+
+            async cloneChannels(sourceGuild, targetId, roleMap) {
+                const channelMap = new Map();
+                const categoryMap = new Map();
+
+                const categories = sourceGuild.channels.filter(c => c.type === 4);
+                const textChannels = sourceGuild.channels.filter(c => c.type === 0 || c.type === 5);
+                const voiceChannels = sourceGuild.channels.filter(c => c.type === 2 || c.type === 13);
+                const forumChannels = sourceGuild.channels.filter(c => c.type === 15 || c.type === 16);
+
+                Logger.log('Clonando categorias...', 'info', 'CANAIS');
+                for (const category of categories) {
+                    try {
+                        const newCategory = await this.api.createChannel(targetId, {
+                            name: category.name,
+                            type: category.type,
+                            position: category.position,
+                            permission_overwrites: this.mapPermissions(category.permission_overwrites, roleMap)
+                        });
+                        
+                        categoryMap.set(category.id, newCategory.id);
+                        channelMap.set(category.id, newCategory.id);
+                        Logger.log(`Categoria "${category.name}" criada`, 'success', 'CANAIS');
+
+                    } catch (error) {
+                        Logger.log(`Erro ao criar categoria "${category.name}": ${error.message}`, 'error', 'CANAIS');
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                Logger.log('Clonando canais de texto...', 'info', 'CANAIS');
+                for (const channel of textChannels) {
+                    try {
+                        const parentId = channel.parent_id ? categoryMap.get(channel.parent_id) : null;
+                        
+                        const newChannel = await this.api.createChannel(targetId, {
+                            name: channel.name,
+                            type: channel.type,
+                            topic: channel.topic,
+                            rate_limit_per_user: channel.rate_limit_per_user,
+                            position: channel.position,
+                            parent_id: parentId,
+                            nsfw: channel.nsfw,
+                            permission_overwrites: this.mapPermissions(channel.permission_overwrites, roleMap)
+                        });
+                        
+                        channelMap.set(channel.id, newChannel.id);
+                        Logger.log(`Canal "${channel.name}" criado`, 'success', 'CANAIS');
+
+                    } catch (error) {
+                        Logger.log(`Erro ao criar canal "${channel.name}": ${error.message}`, 'error', 'CANAIS');
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                Logger.log('Clonando canais de voz...', 'info', 'CANAIS');
+                for (const channel of voiceChannels) {
+                    try {
+                        const parentId = channel.parent_id ? categoryMap.get(channel.parent_id) : null;
+                        
+                        const newChannel = await this.api.createChannel(targetId, {
+                            name: channel.name,
+                            type: channel.type,
+                            bitrate: channel.bitrate,
+                            user_limit: channel.user_limit,
+                            position: channel.position,
+                            parent_id: parentId,
+                            rtc_region: channel.rtc_region,
+                            video_quality_mode: channel.video_quality_mode,
+                            permission_overwrites: this.mapPermissions(channel.permission_overwrites, roleMap)
+                        });
+                        
+                        channelMap.set(channel.id, newChannel.id);
+                        Logger.log(`Canal de voz "${channel.name}" criado`, 'success', 'CANAIS');
+
+                    } catch (error) {
+                        Logger.log(`Erro ao criar canal de voz "${channel.name}": ${error.message}`, 'error', 'CANAIS');
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                if (forumChannels.length > 0) {
+                    Logger.log('Clonando canais de fórum/mídia...', 'info', 'CANAIS');
+                    for (const channel of forumChannels) {
+                        try {
+                            const parentId = channel.parent_id ? categoryMap.get(channel.parent_id) : null;
+                            
+                            const newChannel = await this.api.createChannel(targetId, {
+                                name: channel.name,
+                                type: channel.type,
+                                topic: channel.topic,
+                                rate_limit_per_user: channel.rate_limit_per_user,
+                                position: channel.position,
+                                parent_id: parentId,
+                                default_auto_archive_duration: channel.default_auto_archive_duration,
+                                default_thread_rate_limit_per_user: channel.default_thread_rate_limit_per_user,
+                                available_tags: channel.available_tags,
+                                permission_overwrites: this.mapPermissions(channel.permission_overwrites, roleMap)
+                            });
+                            
+                            channelMap.set(channel.id, newChannel.id);
+                            Logger.log(`Canal de fórum "${channel.name}" criado`, 'success', 'CANAIS');
+
+                        } catch (error) {
+                            Logger.log(`Erro ao criar canal de fórum "${channel.name}": ${error.message}`, 'error', 'CANAIS');
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                    }
+                }
+
+                Logger.log('=== CANAIS CLONADOS COM SUCESSO ===', 'success', 'CANAIS');
+                return channelMap;
+            }
+
+            mapPermissions(overwrites, roleMap) {
+                return overwrites.map(overwrite => ({
+                    ...overwrite,
+                    id: overwrite.type === 0 ? roleMap.get(overwrite.id) || overwrite.id : overwrite.id
+                }));
+            }
+
+            async configurePermissions(sourceGuild, channelMap, roleMap) {
+                const allChannels = sourceGuild.channels.filter(c => c.permission_overwrites.length > 0);
+                let configured = 0;
+
+                for (const channel of allChannels) {
+                    const newChannelId = channelMap.get(channel.id);
+                    if (!newChannelId) continue;
+
+                    Logger.log(`Configurando permissões: ${channel.name}`, 'info', 'PERMISSÕES');
+
+                    for (const overwrite of channel.permission_overwrites) {
+                        try {
+                            const targetId = overwrite.type === 0 ? roleMap.get(overwrite.id) || overwrite.id : overwrite.id;
+                            
+                            await this.api.updateChannelPermissions(newChannelId, {
+                                ...overwrite,
+                                id: targetId
+                            });
+
+                        } catch (error) {
+                            Logger.log(`Erro nas permissões de "${channel.name}": ${error.message}`, 'error', 'PERMISSÕES');
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 200));
+                    }
+
+                    configured++;
+                    const progress = 75 + (configured / allChannels.length) * 15;
+                    this.updateProgress(progress, `Configurando permissões: ${configured}/${allChannels.length}`);
+                }
+
+                Logger.log('=== PERMISSÕES CONFIGURADAS ===', 'success', 'PERMISSÕES');
+            }
+
+            async configureSpecialChannels(sourceGuild, targetId, channelMap) {
+                const specialChannels = {
+                    rules_channel_id: sourceGuild.rules_channel_id ? channelMap.get(sourceGuild.rules_channel_id) : null,
+                    public_updates_channel_id: sourceGuild.public_updates_channel_id ? channelMap.get(sourceGuild.public_updates_channel_id) : null,
+                    afk_channel_id: sourceGuild.afk_channel_id ? channelMap.get(sourceGuild.afk_channel_id) : null,
+                    system_channel_id: sourceGuild.system_channel_id ? channelMap.get(sourceGuild.system_channel_id) : null
+                };
+
+                const hasSpecialChannels = Object.values(specialChannels).some(id => id !== null);
+                
+                if (hasSpecialChannels) {
+                    Logger.log('Configurando canais especiais...', 'info', 'SERVIDOR');
+                    
+                    try {
+                        await this.api.updateGuild(targetId, specialChannels);
+                        Logger.log('Canais especiais configurados!', 'success', 'SERVIDOR');
+                    } catch (error) {
+                        Logger.log(`Erro ao configurar canais especiais: ${error.message}`, 'error', 'SERVIDOR');
+                    }
+                }
+            }
+        }
+
+        const cloner = new BetterCloner();
+    </script>
+</body>
+</html>
